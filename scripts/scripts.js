@@ -251,6 +251,41 @@ const soundpacks = {
         volume: 1
       }
     ]
+  },
+  Memes: {
+    titleColor: "#c2002d",
+    sounds: [
+      {
+        src: "./sounds/pack8/hitmarker.mp3",
+        padColor: "#d79e00",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack8/oof.wav",
+        padColor: "#bb00d9",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack8/bruh.mp3",
+        padColor: "#00d94b",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack8/profanity.mp3",
+        padColor: "#dadb00",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack8/damsun.mp3",
+        padColor: "#1200ea",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack8/illuminooty.mp3",
+        padColor: "#f72300",
+        volume: 1
+      }
+    ]
   }
 };
 
