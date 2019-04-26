@@ -2,11 +2,6 @@
   Constants
 */
 
-// DOM stuff
-const pads = document.querySelectorAll(".pads div");
-const options = document.querySelectorAll(".menu-container li");
-const image = document.getElementById("visual");
-
 // Soundpacks
 const soundpacks = {
   Standard: {
@@ -277,6 +272,19 @@ const img = [
   "url('res/pose6.png')"
 ];
 
+// DOM stuff
+const optionsUl = document.getElementById("options");
+Object.keys(soundpacks).forEach(soundpackName => {
+  const li = document.createElement("li");
+  li.innerHTML = soundpackName;
+  li.onclick = () => selectSoundpack(soundpackName);
+  optionsUl.appendChild(li);
+});
+
+const pads = document.querySelectorAll(".pads div");
+const options = document.querySelectorAll(".menu-container li");
+const image = document.getElementById("visual");
+
 /*
   U T I L S
  */
@@ -331,7 +339,6 @@ function applySoundpackStyles(soundpackName) {
 }
 
 function selectSoundpack(soundpackName) {
-  console.log('selecting soundpack ' + soundpackName)
   currentSoundpackName = soundpackName;
   const soundpack = soundpacks[currentSoundpackName];
   applySoundpackStyles(soundpackName);
@@ -383,11 +390,6 @@ function pianoKey(index) {
   Registering event handlers
 */
 
-// On option selected
-options.forEach(option => {
-  option.addEventListener("click", ({ target }) => selectSoundpack(target.innerHTML));
-});
-
 // On paddo boi clicked
 pads.forEach((pad, index) => {
   pad.addEventListener("click", () => pianoKey(index));
@@ -408,6 +410,7 @@ document.onkeydown = ({ keyCode }) => {
 /*
  State Initialization
 */
+
 let currentImg = 0;
 let currentSoundpackName;
 let audios = {};
