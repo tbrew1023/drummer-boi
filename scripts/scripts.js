@@ -300,12 +300,15 @@ function uniqueRandom(oldValue, min, max) {
   return rand;
 }
 
+// wrapInt(0, 0, 10) => 0; wrapInt(-1, 0, 10) => 9; wrapInt(10, 0, 10) => 0
+const wrapInt = (value, min, max) => value >= max ? min :
+                                     value < min ? max - 1 :
+                                     value;
+
 /*
   F U N C T I O N A L I T Y
 */
-
-function selectOption(option) {
-  currentSoundpackName = option.innerHTML;
+function applySoundpackStyles(soundpackName) {
   const soundpack = soundpacks[currentSoundpackName];
 
   // reset other options
@@ -318,13 +321,20 @@ function selectOption(option) {
     ...selectedOptionStyle,
     color: soundpack.titleColor
   };
-  applyStyles(option, selectedStyle);
+  applyStyles([...options].find(o => o.innerHTML === soundpackName), selectedStyle);
 
   // Beautify dem keys
   pads.forEach(
     (pad, index) =>
       (pad.style.backgroundColor = soundpack.sounds[index].padColor)
   );
+}
+
+function selectSoundpack(soundpackName) {
+  console.log('selecting soundpack ' + soundpackName)
+  currentSoundpackName = soundpackName;
+  const soundpack = soundpacks[currentSoundpackName];
+  applySoundpackStyles(soundpackName);
 
   // Load soundpack if not already loaded
   if (!(currentSoundpackName in audios)) {
@@ -336,6 +346,21 @@ function selectOption(option) {
       return audioEl;
     });
   }
+}
+
+function cycleSoundpack(inc) {
+  const names = [...options].map(o => o.innerHTML);
+  const currentIndex = names.indexOf(currentSoundpackName);
+  const nextIndex = wrapInt(currentIndex + inc, 0, names.length);
+  selectSoundpack(names[nextIndex]);
+}
+
+function nextSoundpack() {
+  cycleSoundpack(1);
+}
+
+function previousSoundpack() {
+  cycleSoundpack(-1);
 }
 
 function cycleImage() {
@@ -360,7 +385,7 @@ function pianoKey(index) {
 
 // On option selected
 options.forEach(option => {
-  option.addEventListener("click", ({ target }) => selectOption(target));
+  option.addEventListener("click", ({ target }) => selectSoundpack(target.innerHTML));
 });
 
 // On paddo boi clicked
@@ -373,6 +398,10 @@ document.onkeydown = ({ keyCode }) => {
   const index = keyCode - 49; // 49 is the "1" keycode
   if (index > -1 && index < 6) {
     pianoKey(index);
+  } else if (keyCode === 37 || keyCode === 38) {
+    previousSoundpack();
+  } else if (keyCode === 39 || keyCode === 40) {
+    nextSoundpack();
   }
 };
 
@@ -382,4 +411,4 @@ document.onkeydown = ({ keyCode }) => {
 let currentImg = 0;
 let currentSoundpackName;
 let audios = {};
-selectOption(options[0]);
+selectSoundpack("Standard");
