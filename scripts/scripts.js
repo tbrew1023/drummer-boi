@@ -107,8 +107,6 @@ const selectedOptionStyle = {
 };
 
 // Animation boi
-let currentImg = 0;
-
 const img = [
   "url('res/pose1.png')",
   "url('res/pose2.png')",
@@ -128,8 +126,17 @@ function applyStyles(element, styles) {
   })
 }
 
-function uniqueRandom(oldValue, min=0, max) {
+// min is inclusive, max is exclusive
+function randomInRange(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
+function uniqueRandom(oldValue, min, max) {
+  let rand = randomInRange(min, max);
+  while (oldValue === rand) {
+    rand = randomInRange(min, max)
+  }
+  return rand;
 }
 
 /*
@@ -153,19 +160,24 @@ function selectOption(option) {
   pads.forEach((pad, index) => pad.style.backgroundColor = soundpack.padColors[index])
 
   // Use new soundpack
-  currentSounds = soundpack.sounds;
+  currentSoundpack = soundpack;
+}
+
+function cycleImage() {
+  currentImg = uniqueRandom(currentImg, 0, img.length);
+  console.log(currentImg)
+  image.style.backgroundImage = img[currentImg];
 }
 
 function playSound(index) {
-  const sound = currentSounds[index];
+  const sound = currentSoundpack.sounds[index];
   sound.currentTime = 0;
   sound.play();
-  let rand = Math.floor(Math.random() * 7);
-  while (currentImg === rand) {
-    rand = Math.floor(Math.random() * 7);
-  }
-  currentImg = rand;
-  image.style.backgroundImage = img[rand];
+}
+
+function pianoKey(index) {
+  playSound(index);
+  cycleImage();
 }
 
 /*
@@ -179,7 +191,7 @@ options.forEach(option => {
 
 // On paddo boi clicked
 pads.forEach((pad, index) => {
-  pad.addEventListener("click", () => playSound(index));
+  pad.addEventListener("click", () => pianoKey(index));
 });
 
 // Keyboard controls the keyboard lol
@@ -187,10 +199,11 @@ document.onkeydown = ({keyCode}) => {
   const index = keyCode - 49; // 49 is the "1" keycode
   console.log(index)
   if (index > -1 && index < 6) {
-    playSound(index)
+    pianoKey(index)
   }
 };
 
 // Initialization
-let currentSounds;
+let currentImg = 0;
+let currentSoundpack;
 selectOption(options[0]);
