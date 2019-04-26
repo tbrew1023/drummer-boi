@@ -10,87 +10,248 @@ const image = document.getElementById("visual");
 // Soundpacks
 const soundpacks = {
   Standard: {
-    selectedOptionColor: "#ef9a9a",
-    sounds: document.querySelectorAll(".sound-pack1"),
-    padColors: [
-      "#e57373",
-      "#FFA726",
-      "#FFEB3B",
-      "#66BB6A",
-      "#1E88E5",
-      "#CE93D8"
+    titleColor: "#ef9a9a",
+    sounds: [
+      {
+        src: "./sounds/pack1/clay.mp3",
+        padColor: "#e57373",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack1/bubbles.mp3",
+        padColor: "#FFA726",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack1/moon.mp3",
+        padColor: "#FFEB3B",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack1/big-snare.wav",
+        padColor: "#66BB6A",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack1/ufo.mp3",
+        padColor: "#1E88E5",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack1/glimmer.mp3",
+        padColor: "#CE93D8",
+        volume: 1
+      }
     ]
   },
   Techno: {
-    selectedOptionColor: "#7CB342",
-    sounds: document.querySelectorAll(".sound-pack2"),
-    padColors: [
-      "#d658ab",
-      "#963b74",
-      "#232227",
-      "#326c71",
-      "#6dc1bb",
-      "#a2dfd6"
+    titleColor: "#7CB342",
+    sounds: [
+      {
+        src: "./sounds/pack2/kick35.wav",
+        padColor: "#d658ab",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack2/fx8.wav",
+        padColor: "#963b74",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack2/fx6.wav",
+        padColor: "#232227",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack2/fx23.wav",
+        padColor: "#326c71",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack2/beep.wav",
+        padColor: "#6dc1bb",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack2/Effect3.wav",
+        padColor: "#a2dfd6",
+        volume: 1
+      }
     ]
   },
   Pop: {
-    selectedOptionColor: "#F48FB1",
-    sounds: document.querySelectorAll(".sound-pack3"),
-    padColors: [
-      "#b6ceec",
-      "#eebfd3",
-      "#e47da2",
-      "#f1a8b4",
-      "#f5c3c0",
-      "#f2ebd8"
+    titleColor: "#F48FB1",
+    sounds: [
+      {
+        src: "./sounds/pack3/kick.wav",
+        padColor: "#b6ceec",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack3/snare.wav",
+        padColor: "#eebfd3",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack3/crash.wav",
+        padColor: "#e47da2",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack3/clap.wav",
+        padColor: "#f1a8b4",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack3/guitar.wav",
+        padColor: "#f5c3c0",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack3/Shat07.wav",
+        padColor: "#f2ebd8",
+        volume: 1
+      }
     ]
   },
   Funky: {
-    selectedOptionColor: "#FBC02D",
-    sounds: document.querySelectorAll(".sound-pack4"),
-    padColors: [
-      "#9aafc5",
-      "#5ec2c7",
-      "#ab567f",
-      "#882d4a",
-      "#c8bf62",
-      "#d0dcde"
+    titleColor: "#FBC02D",
+    sounds: [
+      {
+        src: "./sounds/pack4/bass3.wav",
+        padColor: "#9aafc5",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack4/bass1.wav",
+        padColor: "#5ec2c7",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack4/bass2.wav",
+        padColor: "#ab567f",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack4/snare.wav",
+        padColor: "#882d4a",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack4/chord7.wav",
+        padColor: "#c8bf62",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack4/clap.wav",
+        padColor: "#d0dcde",
+        volume: 1
+      }
     ]
   },
   Island: {
-    selectedOptionColor: "#4DB6AC",
-    sounds: document.querySelectorAll(".sound-pack5"),
-    padColors: [
-      "#5c6d42",
-      "#da7a29",
-      "#e5b325",
-      "#ca9024",
-      "#357b89",
-      "#1b4e66"
+    titleColor: "#4DB6AC",
+    sounds: [
+      {
+        src: "./sounds/pack5/boop2.wav",
+        padColor: "#5c6d42",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack5/boop.WAV",
+        padColor: "#da7a29",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack5/conga.WAV",
+        padColor: "#e5b325",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack5/clock.WAV",
+        padColor: "#ca9024",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack5/shaker.wav",
+        padColor: "#357b89",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack5/shaker2.wav",
+        padColor: "#1b4e66",
+        volume: 1
+      }
     ]
   },
   "Lo-Fi": {
-    selectedOptionColor: "#1E88E5",
-    sounds: document.querySelectorAll(".sound-pack6"),
-    padColors: [
-      "#ebb8a7",
-      "#ee9b80",
-      "#d48874",
-      "#368196",
-      "#205973",
-      "#0f3441"
+    titleColor: "#1E88E5",
+    sounds: [
+      {
+        src: "./sounds/pack6/low-kick.wav",
+        padColor: "#ebb8a7",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack6/kick.wav",
+        padColor: "#ee9b80",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack6/crisp.WAV",
+        padColor: "#d48874",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack6/clap.wav",
+        padColor: "#368196",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack6/chord9.wav",
+        padColor: "#205973",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack6/crash.wav",
+        padColor: "#0f3441",
+        volume: 1
+      }
     ]
   },
   Vaporwave: {
-    selectedOptionColor: "#7E57C2",
-    sounds: document.querySelectorAll(".sound-pack7"),
-    padColors: [
-      "#c9a7d7",
-      "#cab8d9",
-      "#cacad9",
-      "#c9dadb",
-      "#caeada",
-      "#caf7dc"
+    titleColor: "#7E57C2",
+    sounds: [
+      {
+        src: "./sounds/pack7/tom.wav",
+        padColor: "#c9a7d7",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/chords8.wav",
+        padColor: "#cab8d9",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/11.wav",
+        padColor: "#cacad9",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/Snare.wav",
+        padColor: "#c9dadb",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/80s.wav",
+        padColor: "#caeada",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/Clap.wav",
+        padColor: "#caf7dc",
+        volume: 1
+      }
     ]
   }
 };
@@ -98,12 +259,12 @@ const soundpacks = {
 const defaultOptionStyle = {
   fontSize: "18px",
   fontWeight: "normal",
-  color: "black",
+  color: "black"
 };
 
 const selectedOptionStyle = {
   fontSize: "28px",
-  fontWeigt: "bolder",
+  fontWeigt: "bolder"
 };
 
 // Animation boi
@@ -123,7 +284,7 @@ const img = [
 function applyStyles(element, styles) {
   Object.keys(styles).forEach(styleProperty => {
     element.style[styleProperty] = styles[styleProperty];
-  })
+  });
 }
 
 // min is inclusive, max is exclusive
@@ -134,7 +295,7 @@ function randomInRange(min, max) {
 function uniqueRandom(oldValue, min, max) {
   let rand = randomInRange(min, max);
   while (oldValue === rand) {
-    rand = randomInRange(min, max)
+    rand = randomInRange(min, max);
   }
   return rand;
 }
@@ -144,33 +305,46 @@ function uniqueRandom(oldValue, min, max) {
 */
 
 function selectOption(option) {
-  const soundpackName = option.innerHTML;
-  const soundpack = soundpacks[soundpackName];
+  currentSoundpackName = option.innerHTML;
+  const soundpack = soundpacks[currentSoundpackName];
 
   // reset other options
-  options.forEach((otherOption) => {
-    applyStyles(otherOption, defaultOptionStyle)
+  options.forEach(otherOption => {
+    applyStyles(otherOption, defaultOptionStyle);
   });
 
   // Beautify current option
-  const selectedStyle = {...selectedOptionStyle, color: soundpack.selectedOptionColor};
+  const selectedStyle = {
+    ...selectedOptionStyle,
+    color: soundpack.titleColor
+  };
   applyStyles(option, selectedStyle);
 
   // Beautify dem keys
-  pads.forEach((pad, index) => pad.style.backgroundColor = soundpack.padColors[index])
+  pads.forEach(
+    (pad, index) =>
+      (pad.style.backgroundColor = soundpack.sounds[index].padColor)
+  );
 
-  // Use new soundpack
-  currentSoundpack = soundpack;
+  // Load soundpack if not already loaded
+  if (!(currentSoundpackName in audios)) {
+    console.log(`Loading soundpack: ${currentSoundpackName}`);
+    audios[currentSoundpackName] = soundpack.sounds.map(sound => {
+      const audioEl = document.createElement("audio");
+      audioEl.src = sound.src;
+      audioEl.volume = sound.volume;
+      return audioEl;
+    });
+  }
 }
 
 function cycleImage() {
   currentImg = uniqueRandom(currentImg, 0, img.length);
-  console.log(currentImg)
   image.style.backgroundImage = img[currentImg];
 }
 
 function playSound(index) {
-  const sound = currentSoundpack.sounds[index];
+  const sound = audios[currentSoundpackName][index];
   sound.currentTime = 0;
   sound.play();
 }
@@ -186,7 +360,7 @@ function pianoKey(index) {
 
 // On option selected
 options.forEach(option => {
-  option.addEventListener("click", ({target}) => selectOption(target));
+  option.addEventListener("click", ({ target }) => selectOption(target));
 });
 
 // On paddo boi clicked
@@ -195,15 +369,17 @@ pads.forEach((pad, index) => {
 });
 
 // Keyboard controls the keyboard lol
-document.onkeydown = ({keyCode}) => {
+document.onkeydown = ({ keyCode }) => {
   const index = keyCode - 49; // 49 is the "1" keycode
-  console.log(index)
   if (index > -1 && index < 6) {
-    pianoKey(index)
+    pianoKey(index);
   }
 };
 
-// Initialization
+/*
+ State Initialization
+*/
 let currentImg = 0;
-let currentSoundpack;
+let currentSoundpackName;
+let audios = {};
 selectOption(options[0]);
