@@ -2,6 +2,9 @@
   Constants
 */
 
+// Number of simultaneous playbacks that can exist for a single sound
+const simultaneousPlaybacks = 5;
+
 // Soundpacks
 const soundpacks = {
   Standard: {
@@ -316,6 +319,29 @@ const wrapInt = (value, min, max) => value >= max ? min :
 /*
   F U N C T I O N A L I T Y
 */
+function buildAudio(sound) {
+  const buildEl = () => {
+    const audioEl = document.createElement("audio");
+    audioEl.src = sound.src;
+    audioEl.volume = sound.volume;
+    return audioEl;
+  };
+
+  const els = Array.from(Array(simultaneousPlaybacks), buildEl);
+
+  return {
+    audioElements: els,
+    elementIndex: 0,
+    play() {
+      const sound = this.audioElements[this.elementIndex];
+      this.elementIndex = wrapInt(this.elementIndex + 1, 0, this.audioElements.length);
+      sound.currentTime = 0;
+      sound.play();
+    }
+  }
+}
+
+
 function applySoundpackStyles(soundpackName) {
   const soundpack = soundpacks[currentSoundpackName];
 
@@ -346,12 +372,7 @@ function selectSoundpack(soundpackName) {
   // Load soundpack if not already loaded
   if (!(currentSoundpackName in audios)) {
     console.log(`Loading soundpack: ${currentSoundpackName}`);
-    audios[currentSoundpackName] = soundpack.sounds.map(sound => {
-      const audioEl = document.createElement("audio");
-      audioEl.src = sound.src;
-      audioEl.volume = sound.volume;
-      return audioEl;
-    });
+    audios[currentSoundpackName] = soundpack.sounds.map(sound => buildAudio(sound));
   }
 }
 
@@ -376,9 +397,7 @@ function cycleImage() {
 }
 
 function playSound(index) {
-  const sound = audios[currentSoundpackName][index];
-  sound.currentTime = 0;
-  sound.play();
+  audios[currentSoundpackName][index].play();
 }
 
 function pianoKey(index) {
@@ -392,7 +411,7 @@ function pianoKey(index) {
 
 // On paddo boi clicked
 pads.forEach((pad, index) => {
-  pad.addEventListener("click", () => pianoKey(index));
+  pad.onclick = () => pianoKey(index);
 });
 
 // Keyboard controls the keyboard lol
