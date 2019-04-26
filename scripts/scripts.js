@@ -469,3 +469,7 @@ let currentImg = 0;
 let currentSoundpackName;
 let audios = {};
 selectSoundpack("Standard");
+
+// Easter egg
+document.getElementById('visual').onclick =
+  () => image.style.backgroundImage = "url('res/blush.png')";
