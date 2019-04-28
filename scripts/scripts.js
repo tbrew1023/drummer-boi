@@ -8,7 +8,7 @@ const simultaneousPlaybacks = 5;
 // Soundpacks
 const soundpacks = {
   Standard: {
-    titleColor: "#ef9a9a",
+    titleColor: "#e57373",
     sounds: [
       {
         src: "./sounds/pack1/clay.mp3",
@@ -42,8 +42,43 @@ const soundpacks = {
       }
     ]
   },
+  Vaporwave: {
+    titleColor: "#c9a7d7",
+    sounds: [
+      {
+        src: "./sounds/pack7/tom.wav",
+        padColor: "#c9a7d7",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/chords8.wav",
+        padColor: "#cab8d9",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/11.wav",
+        padColor: "#cacad9",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/Snare.wav",
+        padColor: "#c9dadb",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/80s.wav",
+        padColor: "#caeada",
+        volume: 1
+      },
+      {
+        src: "./sounds/pack7/Clap.wav",
+        padColor: "#caf7dc",
+        volume: 1
+      }
+    ]
+  },
   Techno: {
-    titleColor: "#7CB342",
+    titleColor: "#d658ab",
     sounds: [
       {
         src: "./sounds/pack2/kick35.wav",
@@ -77,43 +112,8 @@ const soundpacks = {
       }
     ]
   },
-  Pop: {
-    titleColor: "#F48FB1",
-    sounds: [
-      {
-        src: "./sounds/pack3/kick.wav",
-        padColor: "#b6ceec",
-        volume: 1
-      },
-      {
-        src: "./sounds/pack3/snare.wav",
-        padColor: "#eebfd3",
-        volume: 1
-      },
-      {
-        src: "./sounds/pack3/crash.wav",
-        padColor: "#e47da2",
-        volume: 1
-      },
-      {
-        src: "./sounds/pack3/clap.wav",
-        padColor: "#f1a8b4",
-        volume: 1
-      },
-      {
-        src: "./sounds/pack3/guitar.wav",
-        padColor: "#f5c3c0",
-        volume: 1
-      },
-      {
-        src: "./sounds/pack3/Shat07.wav",
-        padColor: "#f2ebd8",
-        volume: 1
-      }
-    ]
-  },
   Funky: {
-    titleColor: "#FBC02D",
+    titleColor: "#9aafc5",
     sounds: [
       {
         src: "./sounds/pack4/bass3.wav",
@@ -148,7 +148,7 @@ const soundpacks = {
     ]
   },
   Island: {
-    titleColor: "#4DB6AC",
+    titleColor: "#5c6d42",
     sounds: [
       {
         src: "./sounds/pack5/boop2.wav",
@@ -183,7 +183,7 @@ const soundpacks = {
     ]
   },
   "Lo-Fi": {
-    titleColor: "#1E88E5",
+    titleColor: "#ebb8a7",
     sounds: [
       {
         src: "./sounds/pack6/low-kick.wav",
@@ -217,43 +217,43 @@ const soundpacks = {
       }
     ]
   },
-  Vaporwave: {
-    titleColor: "#7E57C2",
+  Pop: {
+    titleColor: "#b6ceec",
     sounds: [
       {
-        src: "./sounds/pack7/tom.wav",
-        padColor: "#c9a7d7",
+        src: "./sounds/pack3/kick.wav",
+        padColor: "#b6ceec",
         volume: 1
       },
       {
-        src: "./sounds/pack7/chords8.wav",
-        padColor: "#cab8d9",
+        src: "./sounds/pack3/snare.wav",
+        padColor: "#eebfd3",
         volume: 1
       },
       {
-        src: "./sounds/pack7/11.wav",
-        padColor: "#cacad9",
+        src: "./sounds/pack3/crash.wav",
+        padColor: "#e47da2",
         volume: 1
       },
       {
-        src: "./sounds/pack7/Snare.wav",
-        padColor: "#c9dadb",
+        src: "./sounds/pack3/clap.wav",
+        padColor: "#f1a8b4",
         volume: 1
       },
       {
-        src: "./sounds/pack7/80s.wav",
-        padColor: "#caeada",
+        src: "./sounds/pack3/guitar.wav",
+        padColor: "#f5c3c0",
         volume: 1
       },
       {
-        src: "./sounds/pack7/Clap.wav",
-        padColor: "#caf7dc",
+        src: "./sounds/pack3/Shat07.wav",
+        padColor: "#f2ebd8",
         volume: 1
       }
     ]
   },
   Memes: {
-    titleColor: "#c2002d",
+    titleColor: "#d79e00",
     sounds: [
       {
         src: "./sounds/pack8/hitmarker.mp3",
@@ -292,12 +292,12 @@ const soundpacks = {
 const defaultOptionStyle = {
   fontSize: "18px",
   fontWeight: "normal",
-  color: "black"
+  color: "#424242"
 };
 
 const selectedOptionStyle = {
   fontSize: "28px",
-  fontWeigt: "bolder"
+  fontWeight: "bolder"
 };
 
 // Animation boi
@@ -312,6 +312,7 @@ const img = [
 
 // DOM stuff
 const optionsUl = document.getElementById("options");
+
 Object.keys(soundpacks).forEach(soundpackName => {
   const li = document.createElement("li");
   li.innerHTML = soundpackName;
@@ -451,9 +452,18 @@ pads.forEach((pad, index) => {
 
 // Keyboard controls the keyboard lol
 document.onkeydown = ({ keyCode }) => {
-  const index = keyCode - 49; // 49 is the "1" keycode
-  if (index > -1 && index < 6) {
-    pianoKey(index);
+  if (keyCode == 65) { // a
+    pianoKey(0);
+  } else if(keyCode == 83) { // s
+    pianoKey(1);
+  } else if(keyCode == 68) { // d
+    pianoKey(2);
+  } else if(keyCode == 70) { // f
+    pianoKey(3);
+  } else if(keyCode == 71) { // g
+    pianoKey(4);
+  } else if(keyCode == 72) { // h
+    pianoKey(5);
   } else if (keyCode === 37 || keyCode === 38) {
     previousSoundpack();
   } else if (keyCode === 39 || keyCode === 40) {
